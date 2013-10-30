@@ -1,0 +1,34 @@
+<%= simple_form_for @plant do |f| %>    
+ 
+  <%= f.input :name, :label => t('Name') %>  
+  <%= f.input :short_name, :label => t('Short Name') %>
+  <%= f.input :src_since, :label => t('Since Date'), :as => :string %>
+  <%= f.input :primary_contact, :label => t('Primary Contact') %> 
+  <%= f.input :primary_cell, :label => t('Cell Phone') %>   
+  <%= f.input :primary_email, :label => t('Email') %>  
+  <%= f.input :tech_contact, :label => t('Tech Contact') %>  
+  <%= f.input :tech_email, :label => t('Email') %> 
+  <%= f.input :tech_cell, :label => t('Cell Phone') %>       
+  <%= f.input :phone, :label => t('Phone') %> 
+  <%= f.input :fax, :label => t('Fax') %>      
+  <%= f.input :address, :label => t('Address') %>   
+  <%= f.input :quality_system_id, :collection =>  Commonx::CommonxHelper.return_misc_definitions('quality_system'), :label => t('Quality System') %>  
+  <%= f.input :web, :label => t('Web') %>
+  <%= f.input :employee_num, :label => t('Employee#') %> 
+  <%= f.input :revenue, :label => t('Revenue'), :hint => '注明单位' %> 
+  <%= f.input :main_product, :label => t('Main Product'), :input_html => { :rows => 4} %>   
+  <%= f.input :equip, :label => t('Equipment'), :input_html => { :rows => 4} %> 
+  <%= f.input :tech_ability, :label => t('Tech Ability'), :input_html => { :rows => 4} %>  
+  <%= f.input :production_capacity, :label => t('Production Capacity'), :input_html => { :rows => 4} %>      
+  <%= f.input :customer_service, :label => t('Customer Service'), :input_html => { :rows => 4} %>         
+  <%= f.input :sourced_product, :label => t('Srouced Product'), :hint => '给本公司制造过的设备', :input_html => { :rows => 4} %>      
+  <% if readonly?(@plant, 'active')%>
+     <%= f.input :active_noupdate, :label => t('Active'), :readonly => true, :required => false, :input_html => {:value => @plant.active} %>
+  <% else %>
+     <%= f.input :active, :label => t('Active'), :collection => [[t('Yes'), true], [t('No'), false]]%>
+  <% end %>               
+  
+  <%= f.button :submit, t('Save'), :class => BUTTONS_CLS['action'] %>  
+<% end %>  
+
+

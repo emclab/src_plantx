@@ -1,0 +1,38 @@
+<div id="main_body">
+<h1><%=t('Plants')%></h1>
+<div class="pagination"><%= will_paginate models %></div>
+<table>
+  <tr>
+    <th>#</th>
+    <th><%=t('Short Name')%></th>
+    <th><%=t('Since Date')%></th>
+    <th><%=t('Primary Contact')%></th>
+    <th><%=t('Phone')%></th>
+    <th><%=t('Fax')%></th>
+    <th><%=t('Active')%></th>
+    <th><%=t('Main Product')%></th>
+    <th><%=t('Sourced Product')%></th>
+    <th></th>
+ 
+  </tr>
+
+<% models.each do |r| %>
+  <tr>
+  	<td><%= link_to r.id.to_s, SUBURI + "/view_handler?index=1&url=#{plant_path(r)}"  %></td>
+    <td><%= r.short_name %></td>
+    <td><%= r.src_since.strftime("%Y/%m/%d") unless r.src_since.nil? %></td>
+    <td><%= prt(r, :primary_contact) %></td>
+    <td><%= prt(r, :phone) %></td>
+    <td><%= prt(r, :fax) %></td>
+    <td><%= r.active ? t('Yes') : t('No') %></td>
+    <td><%= r.main_product %></td>
+    <td><%= r.sourced_product %></td> 
+    <td><%= link_to 'Edit', SUBURI + "/view_handler?index=1&url=#{edit_plant_path(r)}", :class => BUTTONS_CLS['action'] if has_action_right?('update', params[:controller], r) %></td>
+
+  </tr>
+<% end %>
+</table>
+
+  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+  &nbsp;<%= link_to t('New Plant'), SUBURI + "/view_handler?index=1&url=#{new_plant_path}", :class => BUTTONS_CLS['action'] if has_action_right?('create', params[:controller]) %>  
+</div>

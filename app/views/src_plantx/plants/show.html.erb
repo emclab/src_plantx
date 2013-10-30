@@ -1,0 +1,106 @@
+<div id="main_body">
+
+<h1><%=t('Plant Info')%></h1>
+
+<p>
+  <b><%=t('Name') %></b>
+  <%= @plant.name %>
+</p>
+<p>
+  <b><%=t('Short Name') %></b>
+  <%= @plant.short_name %>
+</p>
+<p>
+  <b><%=t('Sourcing Since') %></b>
+  <%= @plant.src_since.strftime("%Y/%m/%d") unless @plant.src_since.nil? %>
+</p>
+<p>
+  <b><%=t('Primary Contact') %></b>
+  <%= @plant.primary_contact %>
+</p>
+<p>
+  <b><%=t('Cell Phone') %></b>
+  <%= @plant.primary_cell %>
+</p>
+<p>
+  <b><%=t('Primary Email') %></b>
+  <%= @plant.primary_email %>
+</p>
+<p>
+  <b><%=t('Tech Contact') %></b>
+  <%= @plant.tech_contact %>
+</p>
+<p>
+  <b><%=t('Cell Phone') %></b>
+  <%= @plant.tech_cell %>
+</p>
+<p>
+  <b><%=t('Tech Email') %></b>
+  <%= @plant.primary_email %>
+</p>
+<p>
+  <b><%=t('Phone') %></b>
+  <%= @plant.phone %>
+</p>
+<p>
+  <b><%=t('Fax') %></b>
+  <%= @plant.fax %>
+</p>
+<p>
+  <b><%=t('Address') %></b>
+  <%= @plant.address %>
+</p>
+<p>
+  <b><%=t('Web') %></b>
+  <%= @plant.web %>
+</p>
+<p>
+  <b><%=t('Main Product') %></b>
+  <%= @plant.main_product %>
+</p>
+<p>
+  <b><%=t('Quality System') %></b>
+  <%= @plant.quality_system.name if @plant.quality_system_id.present? %>
+</p>
+<p>
+  <b><%=t('Revenue')%></b>
+  <%= @plant.revenue %>
+</p>
+<p>
+  <b><%=t('Employee#')%></b>
+  <%= @plant.employee_num %>
+</p>
+<p>
+  <b><%=t('Sourced Product')%></b>
+  <%= @plant.sourced_product %>
+</p>
+<p>
+  <b><%=t('Equipment')%></b>
+  <%= @plant.equip %>
+</p>
+<p>
+  <b><%=t('Tech Ability')%></b>
+  <%= @plant.tech_ability %>
+</p>
+<p>
+  <b><%=t('Customer Service')%></b>
+  <%= @plant.customer_service %>
+</p>
+<p>
+  <b><%=t('Production Capacity')%></b>
+  <%= @plant.production_capacity %>
+</p>
+<p>
+  <b><%= t('Active') %></b>
+  <%= @plant.active ? t('Yes') : t('No') %>
+</p>
+<p>
+  <b><%= t('Last Updated By') %></b>
+  <%= @plant.last_updated_by.name %>
+</p>
+</ul>
+</p>
+
+  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+</div>
+
