@@ -1,3 +1,7 @@
+<% if false %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
 <%= simple_form_for @plant do |f| %>    
  
   <%= f.input :name, :label => t('Name') %>  
@@ -23,5 +27,8 @@
   <%= f.input :customer_service, :label => t('Customer Service'), :input_html => { :rows => 4} %>         
   <%= f.input :sourced_product, :label => t('Srouced Product'), :hint => '给本公司制造过的设备', :input_html => { :rows => 4} %>              
   
+  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
   <%= f.button :submit, t('Save'), :class => BUTTONS_CLS['action'] %>  
 <% end %>  
+
+<% end %>

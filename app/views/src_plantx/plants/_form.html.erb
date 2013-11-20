@@ -1,3 +1,7 @@
+<% if false %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
 <%= simple_form_for @plant do |f| %>    
  
   <%= f.input :name, :label => t('Name') %>  
@@ -28,7 +32,10 @@
      <%= f.input :active, :label => t('Active'), :collection => [[t('Yes'), true], [t('No'), false]]%>
   <% end %>               
   
+  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
   <%= f.button :submit, t('Save'), :class => BUTTONS_CLS['action'] %>  
 <% end %>  
+
+<% end %>
 
 

@@ -1,3 +1,7 @@
+<% if false %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
 <div id="main_body">
 
 <h1><%=t('Plant Info')%></h1>
@@ -103,4 +107,6 @@
 
   <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
 </div>
+
+<% end %>
 
