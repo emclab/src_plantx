@@ -104,8 +104,14 @@
 </p>
 </ul>
 </p>
+<table class="table table-striped">
+  <tr>
+    <th>
+    <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+    </th>
+  </tr>
+</table>
 
-  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
 </div>
 
 <% end %>

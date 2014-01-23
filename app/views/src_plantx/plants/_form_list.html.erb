@@ -2,15 +2,15 @@
   <%= render inline: ERB.new(@erb_code).result(binding) %>
   
 <% else %>
-<div id="main_body">
 <h1><%=t('Plants')%></h1>
 <div class="pagination"><%= will_paginate models %></div>
-<table>
+<table class="table table-striped">
   <tr>
     <th>#</th>
     <th><%=t('Short Name')%></th>
     <th><%=t('Since Date')%></th>
     <th><%=t('Primary Contact')%></th>
+    <th><%=t('Primary Cell')%></th>
     <th><%=t('Phone')%></th>
     <th><%=t('Fax')%></th>
     <th><%=t('Active')%></th>
@@ -26,6 +26,7 @@
     <td><%= r.short_name %></td>
     <td><%= r.src_since.strftime("%Y/%m/%d") unless r.src_since.nil? %></td>
     <td><%= prt(r, :primary_contact) %></td>
+    <td><%= prt(r, :primary_cell) %></td>
     <td><%= prt(r, :phone) %></td>
     <td><%= prt(r, :fax) %></td>
     <td><%= r.active ? t('Yes') : t('No') %></td>
@@ -36,9 +37,9 @@
   </tr>
 <% end %>
 </table>
-
+<table class="table table-striped">
   <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
   &nbsp;<%= link_to t('New Plant'), SUBURI + "/view_handler?index=1&url=#{new_plant_path}", :class => BUTTONS_CLS['action'] if has_action_right?('create', params[:controller]) %>  
-</div>
+</table>
 
 <% end %>
