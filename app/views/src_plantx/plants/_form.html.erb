@@ -15,7 +15,7 @@
   <%= f.input :tech_cell, :label => t('Cell Phone') %>       
   <%= f.input :phone, :label => t('Phone') %> 
   <%= f.input :fax, :label => t('Fax') %>      
-  <%= f.input :address, :label => t('Address') %>   
+  <%= f.input :address, :label => t('Address'), :input_html => { :rows => 2} %>   
   <%= f.input :quality_system_id, :collection =>  Commonx::CommonxHelper.return_misc_definitions('quality_system'), :label => t('Quality System') %>  
   <%= f.input :web, :label => t('Web') %>
   <%= f.input :employee_num, :label => t('Employee#') %> 
