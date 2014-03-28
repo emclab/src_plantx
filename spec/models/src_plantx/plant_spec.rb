@@ -21,6 +21,18 @@ module SrcPlantx
       p = FactoryGirl.build(:src_plantx_plant, :short_name => nil)
       p.should_not be_valid
     end
+    
+    it "should reject duplidate name" do
+      p = FactoryGirl.create(:src_plantx_plant, :name => 'test')
+      p1 = FactoryGirl.build(:src_plantx_plant, :name => 'Test', :short_name => 'a new short')
+      p1.should_not be_valid
+    end
+    
+    it "should reject duplidate short name" do
+      p = FactoryGirl.create(:src_plantx_plant, :short_name => 'test')
+      p1 = FactoryGirl.build(:src_plantx_plant, :short_name => 'Test', :name => 'a new short')
+      p1.should_not be_valid
+    end
 
     it "should reject nil phone" do
       p = FactoryGirl.build(:src_plantx_plant, :phone => nil)

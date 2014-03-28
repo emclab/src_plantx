@@ -49,4 +49,4 @@ zh-CN:
   No  : '否'
   yes : '是'
   no  : '否'
-
+  Must be unique! : '重名！'

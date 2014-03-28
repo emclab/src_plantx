@@ -16,8 +16,7 @@ module SrcPlantx
    
     email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
    
-    validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
-    validates :short_name, :presence => true, :uniqueness => {:case_sensitive => false}
+    validates :name, :short_name, :presence => true, :uniqueness => {:case_sensitive => false, :message => I18n.t('Must be unique!')}
     validates :phone, :presence => true
     validates :address, :presence => true
     validates :primary_contact, :primary_cell, :presence => true
