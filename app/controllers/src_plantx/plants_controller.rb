@@ -2,7 +2,7 @@ require_dependency "src_plantx/application_controller"
 
 module SrcPlantx
   class PlantsController < ApplicationController
-    before_filter :require_employee
+    before_action :require_employee
     
     def index
       @title = t('Plants')

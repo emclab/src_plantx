@@ -18,7 +18,6 @@ module SrcPlantx
    
     validates :name, :short_name, :presence => true, :uniqueness => {:case_sensitive => false, :message => I18n.t('Must be unique!')}
     validates :phone, :presence => true
-    validates :address, :presence => true
     validates :primary_contact, :primary_cell, :presence => true
     validates :primary_email, :format     => { :with => email_regex, :message => '电邮格式错误！' },
                               :uniqueness => { :case_sensitive => false, :message => '电邮已占用！' },
@@ -26,5 +25,11 @@ module SrcPlantx
     validates :tech_email, :format     => { :with => email_regex, :message => '电邮格式错误！' },
                            :uniqueness => { :case_sensitive => false, :message => '电邮已占用！' },
                            :if => 'tech_email.present?'    
+    validate :dynamic_validate
+    
+    def dynamic_validate
+      wf = Authentify::AuthentifyUtility.find_config_const('dynamic_validate', 'src_plantx')
+      eval(wf) if wf.present?
+    end
   end
 end

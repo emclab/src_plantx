@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "LinkTests" do
+RSpec.describe "LinkTests", type: :request do
   describe "GET /src_plantx_link_tests" do
     mini_btn = 'btn btn-mini '
     ActionView::CompiledTemplates::BUTTONS_CLS =
@@ -51,21 +51,21 @@ describe "LinkTests" do
     
     it "works! (now write some real specs)" do
       sup = FactoryGirl.create(:src_plantx_plant)
-      visit plants_path
-      page.should have_content('Plants')
+      visit src_plantx.plants_path
+      expect(page).to have_content('Plants')
       #save_and_open_page
       click_link 'Edit'
-      page.should have_content('Update Plant')
+      expect(page).to have_content('Update Plant')
       
-      visit plants_path
+      visit src_plantx.plants_path
       click_link sup.id.to_s     
-      page.should have_content('Plant Info')
+      expect(page).to have_content('Plant Info')
       
-      visit plants_path
+      visit src_plantx.plants_path
       #save_and_open_page
       click_link "New Plant"
       #save_and_open_page
-      page.should have_content('New Plant')
+      expect(page).to have_content('New Plant')
     end
   end
 end

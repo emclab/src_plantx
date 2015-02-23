@@ -32,7 +32,7 @@
     <td><%= r.active ? t('Yes') : t('No') %></td>
     <td><%= r.main_product %></td>
     <td><%= r.sourced_product %></td> 
-    <td><%= link_to 'Edit', SUBURI + "/view_handler?index=1&url=#{edit_plant_path(r)}", :class => BUTTONS_CLS['action'] if has_action_right?('update', params[:controller], r) %></td>
+    <td><%= link_to t('Edit'), SUBURI + "/view_handler?index=1&url=#{edit_plant_path(r)}", :class => BUTTONS_CLS['action'] if has_action_right?('update', params[:controller], r) %></td>
 
   </tr>
 <% end %>
