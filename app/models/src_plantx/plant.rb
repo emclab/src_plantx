@@ -1,6 +1,7 @@
 module SrcPlantx
   class Plant < ActiveRecord::Base
     attr_accessor :active_noupdate
+=begin
     attr_accessible :active, :address, :customer_service, :employee_num, :equip, :fax, :last_updated_by_id, :main_product, :name, :phone, :primary_cell, 
                     :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, 
                     :tech_cell, :tech_contact, :primary_email, :tech_email, :web,
@@ -10,7 +11,7 @@ module SrcPlantx
                     :tech_cell, :tech_contact, :primary_email, :tech_email, :web,
                     :active_noupdate,
                     :as => :role_update
-                    
+=end              
     belongs_to :last_updated_by, :class_name => 'Authentify::User'
     belongs_to :quality_system, :class_name => 'Commonx::MiscDefinition'
    

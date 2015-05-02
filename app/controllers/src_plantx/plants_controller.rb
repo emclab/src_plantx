@@ -17,7 +17,7 @@ module SrcPlantx
     end
   
     def create
-      @plant = SrcPlantx::Plant.new(params[:plant], :as => :role_new)
+      @plant = SrcPlantx::Plant.new(new_params)
       @plant.last_updated_by_id = session[:user_id]
       if @plant.save
         redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Saved!")
@@ -37,7 +37,7 @@ module SrcPlantx
     def update
       @plant = SrcPlantx::Plant.find_by_id(params[:id])
       @plant.last_updated_by_id = session[:user_id]
-      if @plant.update_attributes(params[:plant], :as => :role_update)
+      if @plant.update_attributes(edit_params)
         redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Updated!")
       else
         @erb_code = find_config_const('plant_edit_view', 'src_plantx')
@@ -53,6 +53,20 @@ module SrcPlantx
     end
     
     protected
+    
+    private
+    
+    def new_params
+      params.require(:plant).permit(:active, :address, :customer_service, :employee_num, :equip, :fax, :last_updated_by_id, :main_product, :name, :phone, :primary_cell, 
+                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, 
+                    :tech_cell, :tech_contact, :primary_email, :tech_email, :web)
+    end
+    
+    def edit_params
+      params.require(:plant).permit(:active, :address, :customer_service, :employee_num, :equip, :fax, :last_updated_by_id, :main_product, :name, :phone, :primary_cell, 
+                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, 
+                    :tech_cell, :tech_contact, :primary_email, :tech_email, :web)
+    end
     
   end
 end

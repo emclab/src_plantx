@@ -19,6 +19,7 @@ module SrcPlantx
       @u = FactoryGirl.create(:user, :user_levels => [ul], :user_roles => [ur])
       @qs = FactoryGirl.create(:commonx_misc_definition, :for_which => 'quality_system')
       
+      session[:user_role_ids] = session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id).user_role_ids
     end
     
     render_views
@@ -28,7 +29,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'index', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "SrcPlantx::Plant.where(:active => true).order('id')")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:src_plantx_plant)
         get 'index'
         expect(assigns(:plants)).to match_array([sup])
@@ -40,7 +40,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'create', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         get 'new'
         expect(response).to be_success
       end
@@ -51,7 +50,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'create', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.attributes_for(:src_plantx_plant)
         get 'create', {:plant => sup}
         expect(response).to redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Saved!")
@@ -61,7 +59,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'create', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.attributes_for(:src_plantx_plant, :name => nil)
         get 'create', {:plant => sup}
         expect(response).to render_template('new')
@@ -73,7 +70,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'update', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:src_plantx_plant)
         get 'edit', {:id => sup.id}
         expect(response).to be_success
@@ -87,7 +83,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'update', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:src_plantx_plant)
         get 'update', {:id => sup.id, :plant => {:name => 'a new name'}}
         expect(response).to redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Updated!")
@@ -97,7 +92,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'update', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:src_plantx_plant)
         get 'update', {:id => sup.id, :plant => {:name => ''}}
         expect(response).to render_template('edit')
@@ -109,7 +103,6 @@ module SrcPlantx
         user_access = FactoryGirl.create(:user_access, :action => 'show', :resource => 'src_plantx_plants', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "record.last_updated_by_id == session[:user_id]")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:src_plantx_plant, :last_updated_by_id => session[:user_id], :quality_system_id => @qs.id)
         get 'show', {:id => sup.id}
         expect(response).to be_success
