@@ -2,6 +2,7 @@
   <%= render inline: @erb_code %>
   
 <% else %>
+<h1><%=t('Update Plant')%></h1>
 <%= simple_form_for @plant do |f| %>    
  
   <%= f.input :name, :label => t('Name') %>  
