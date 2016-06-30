@@ -58,13 +58,13 @@ module SrcPlantx
     
     def new_params
       params.require(:plant).permit(:active, :address, :customer_service, :employee_num, :equip, :fax, :last_updated_by_id, :main_product, :name, :phone, :primary_cell, 
-                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, 
+                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, :category_id,
                     :tech_cell, :tech_contact, :primary_email, :tech_email, :web)
     end
     
     def edit_params
       params.require(:plant).permit(:active, :address, :customer_service, :employee_num, :equip, :fax, :last_updated_by_id, :main_product, :name, :phone, :primary_cell, 
-                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, 
+                    :primary_contact, :production_capacity, :quality_system_id, :revenue, :short_name, :sourced_product, :src_since, :tech_ability, :category_id,
                     :tech_cell, :tech_contact, :primary_email, :tech_email, :web)
     end
     

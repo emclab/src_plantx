@@ -39,6 +39,21 @@ module SrcPlantx
       expect(p).not_to be_valid
     end
 
+    it "should reject 0 category_id" do
+      p = FactoryGirl.build(:src_plantx_plant, :category_id => 0)
+      expect(p).not_to be_valid
+    end
+
+    it "should take nil category_id" do
+      p = FactoryGirl.build(:src_plantx_plant, :category_id => nil)
+      expect(p).to be_valid
+    end
+
+    it "should reject 0 quality system_id" do
+      p = FactoryGirl.build(:src_plantx_plant, :quality_system_id => 0)
+      expect(p).not_to be_valid
+    end
+
     it "should reject nil primary cell" do
       p = FactoryGirl.build(:src_plantx_plant, :primary_cell => nil)
       expect(p).not_to be_valid

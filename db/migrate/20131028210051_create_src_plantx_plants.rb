@@ -26,10 +26,11 @@ class CreateSrcPlantxPlants < ActiveRecord::Migration
       t.string :fax  
       t.text :main_product    
       t.string :tech_email
+      t.integer :category_id
       
     end
     
     add_index :src_plantx_plants, :name
-    
+    add_index :src_plantx_plants, :category_id
   end
 end
